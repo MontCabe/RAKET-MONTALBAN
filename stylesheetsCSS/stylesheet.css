@@ -1,7 +1,10 @@
+/*stylesheet for sign_up.html*/
+
 body {
   margin: 0;
+  padding: 0;
   min-height: 100vh;
-  background-image: url("/assets/montalbanBackground.png");
+  background-image: url("/assets/images/montalbanBackground.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -32,6 +35,9 @@ nav a {
   text-decoration: none;
   color: white;
   font-weight: 500;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
 }
 
 .sign-in-link {
