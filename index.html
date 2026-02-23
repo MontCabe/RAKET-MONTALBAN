@@ -29,8 +29,14 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
       <div class="container-fluid px-lg-5 px-3">
-        <a class="navbar-brand" href="#">RAKET</a>
-
+        <a class="navbar-brand" href="#">
+          <img
+            src="assets/images/raket_nobg.png"
+            alt="RAKET"
+            class="navbar-logo"
+            style="height: 40px; width: auto"
+          />
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -455,7 +461,10 @@
                 </button>
 
                 <p style="text-align: center; margin-top: 20px">
-                  <a href="#" style="color: #0b5d0b; text-decoration: none"
+                  <a
+                    href="#"
+                    onclick="switchSection('forgotpassword', event)"
+                    style="color: #0b5d0b; text-decoration: none"
                     >Forgot your password?</a
                   >
                 </p>
@@ -478,6 +487,69 @@
       </div>
     </section>
 
+    <!-- FORGOT PASSWORD SECTION -->
+    <section id="forgotpassword-section" style="display: none">
+      <div class="container" style="margin-top: 100px; margin-bottom: 60px">
+        <div class="row justify-content-center">
+          <div class="col-lg-5">
+            <div
+              style="
+                background: #fff;
+                padding: 40px;
+                border-radius: 12px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+              "
+            >
+              <h2
+                style="color: #2f6b47; margin-bottom: 10px; text-align: center"
+              >
+                Forgot Password
+              </h2>
+              <p style="text-align: center; color: #666; margin-bottom: 30px">
+                Enter your email address and we'll send you a link to reset your
+                password
+              </p>
+
+              <form id="forgotPasswordForm">
+                <div class="mb-3">
+                  <label
+                    for="forgotEmail"
+                    class="form-label"
+                    style="font-weight: 600"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="forgotEmail"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-search w-100"
+                  style="background: #0b5d0b; border: none"
+                >
+                  Send Reset Link
+                </button>
+
+                <p style="text-align: center; margin-top: 20px">
+                  Remember your password?
+                  <a
+                    href="#"
+                    onclick="switchSection('signin', event)"
+                    style="color: #0b5d0b; font-weight: 600"
+                    >Sign In</a
+                  >
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <footer class="footer">
       <div class="container d-flex justify-content-between align-items-center">
         <div>RAKET | Copyright © 2025</div>
@@ -499,6 +571,8 @@
         document.getElementById("findresumes-section").style.display = "none";
         document.getElementById("createaccount-section").style.display = "none";
         document.getElementById("signin-section").style.display = "none";
+        document.getElementById("forgotpassword-section").style.display =
+          "none";
 
         // Remove active class from all nav links
         document.querySelectorAll(".navbar-nav .nav-link").forEach((link) => {
@@ -526,6 +600,9 @@
           document.querySelector(".create-link").classList.add("active-link");
         } else if (section === "signin") {
           document.getElementById("signin-section").style.display = "block";
+        } else if (section === "forgotpassword") {
+          document.getElementById("forgotpassword-section").style.display =
+            "block";
         }
       }
 

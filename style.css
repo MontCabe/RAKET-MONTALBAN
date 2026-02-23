@@ -1,8 +1,12 @@
 /* global */
 body {
+  margin: 0;
   font-family: "Poppins", sans-serif;
   background: #f4f6f5;
   padding-top: 70px;
+  min-height: 100vh;
+  /* reserve space so fixed footer doesn't cover content */
+  padding-bottom: 90px;
 }
 
 /* navbar */
@@ -253,7 +257,12 @@ body {
 .footer {
   background: #eaeaea;
   padding: 20px 0;
-  margin-top: 60px;
+  margin-top: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
 }
 
 /* responsive */
