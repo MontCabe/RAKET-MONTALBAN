@@ -15,6 +15,88 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* make navbar fixed and center content vertically */
+.navbar-custom {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  height: 64px;
+}
+
+.navbar-custom .container-fluid {
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+/* brand and logo */
+.navbar-brand {
+  font-weight: 700;
+  font-size: 18px;
+  color: #d9ffd5 !important;
+  display: flex;
+  align-items: center;
+}
+.navbar-logo {
+  height: 40px;
+  width: auto;
+  margin-right: 8px;
+}
+
+/* toggler styling to be visible on dark background */
+.navbar-toggler {
+  border-color: rgba(255,255,255,0.15);
+}
+.navbar-toggler-icon {
+  filter: invert(1) brightness(2);
+}
+
+/* Mobile collapsed navbar panel: show as an absolute panel under the toggler */
+@media (max-width: 991px) {
+  .navbar-toggler {
+    z-index: 1190; /* keep toggler above the panel */
+  }
+
+  .navbar-custom .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    right: 12px;
+    left: auto;
+    width: min(92vw, 320px);
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    z-index: 1180;
+    display: none;
+  }
+
+  .navbar-custom .navbar-collapse.show {
+    display: block;
+  }
+
+  .navbar-custom .navbar-collapse .navbar-nav {
+    display: block;
+  }
+
+  .navbar-custom .navbar-collapse .nav-link {
+    color: #333 !important;
+    padding: 8px 6px;
+    display: block;
+  }
+
+  /* full-width-ish on very small screens */
+  @media (max-width: 575px) {
+    .navbar-custom .navbar-collapse {
+      left: 8px;
+      right: 8px;
+      width: auto;
+    }
+  }
+}
+
 .navbar-brand {
   font-weight: 700;
   font-size: 28px;
