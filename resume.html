@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Find Resumes - RAKET</title>
+
+    <!-- bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- bootstrap icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- google font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+      <div class="container-fluid px-lg-5 px-3">
+        <a class="navbar-brand" href="index.html">
+          <img
+            src="assets/images/raket_nobg.png"
+            alt="RAKET"
+            class="navbar-logo"
+            style="height: 40px; width: auto"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-lg-4">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active-link" href="resume.html"
+                >Find Resumes</a
+              >
+            </li>
+          </ul>
+
+          <div class="ms-auto d-lg-flex align-items-center mt-3 mt-lg-0">
+            <a href="create-account.html" class="nav-link create-link me-lg-3"
+              >Create Account</a
+            >
+            <a href="signin.html" class="btn btn-signin">Sign In</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- hero -->
+    <section class="hero-section">
+      <div class="container text-center">
+        <div class="search-wrapper mx-auto">
+          <div class="input-group search-input mb-3">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search for job, skills, experience, etc..."
+            />
+          </div>
+
+          <div class="input-group search-input mb-4">
+            <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter a barangay"
+            />
+            <span class="input-group-text"
+              ><i class="bi bi-chevron-down"></i
+            ></span>
+          </div>
+
+          <button class="btn btn-search">Search</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- filters -->
+    <div class="container filter-section">
+      <div class="d-flex align-items-center mb-3">
+        <i class="bi bi-list me-2"></i>
+        <span class="fw-semibold">Most Recent</span>
+        <i class="bi bi-chevron-down ms-2"></i>
+      </div>
+
+      <div class="tag-wrapper" id="categoryTags">
+        <span class="tag active" data-category="all">All</span>
+        <span class="tag" data-category="Healthcare">Plumbing</span>
+        <span class="tag" data-category="Education">Electrical</span>
+        <span class="tag" data-category="Engineering">Beautification</span>
+      </div>
+    </div>
+
+    <!-- pagination -->
+    <div
+      class="container filter-section d-flex justify-content-between align-items-center"
+    >
+      <button id="prevBtn" class="btn btn-outline-dark">← Previous</button>
+      <button id="nextBtn" class="btn btn-outline-dark">Next →</button>
+    </div>
+
+    <!-- main -->
+    <div class="container main-content">
+      <div class="row g-4 align-items-start">
+        <!-- left column -->
+        <div class="col-lg-5">
+          <div class="resume-list" id="resumeList"></div>
+        </div>
+
+        <!-- right column details -->
+        <div class="col-lg-7">
+          <div class="details-panel" id="detailsContent"></div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div>
+          <img
+            src="assets/images/raket_nobg.png"
+            alt="RAKET"
+            class="navbar-logo"
+            style="height: 20px; width: auto"
+          />
+          | Copyright © 2026
+        </div>
+        <div>
+          <a href="#">Terms & Conditions</a>
+          <a href="#">Security</a>
+          <a href="#">Privacy</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // resume data
+      const resumes = [
+        {
+          name: "Juan Dela Cruz",
+          title: "UI/UX Designer",
+          level: "Entry Level",
+          type: "Full-Time",
+          category: "Technology",
+          age: 24,
+          gender: "Male",
+          barangay: "San Isidro",
+          experience: [
+            "2 years as junior designer",
+            "worked on mobile apps",
+            "led 3 design projects",
+          ],
+          skills: ["Figma", "Web Design", "Prototyping"],
+          certifications: ["Google UX Certificate"],
+        },
+        {
+          name: "Maria Santos",
+          title: "Registered Nurse",
+          level: "Mid Level",
+          type: "Full-Time",
+          category: "Healthcare",
+          age: 29,
+          gender: "Female",
+          barangay: "Poblacion",
+          experience: [
+            "5 years hospital experience",
+            "patient care specialist",
+          ],
+          skills: ["Patient Care", "Medical Records"],
+          certifications: ["PRC Licensed Nurse"],
+        },
+        {
+          name: "Kevin Tan",
+          title: "Software Engineer",
+          level: "Senior Level",
+          type: "Full-Time",
+          category: "Technology",
+          age: 32,
+          gender: "Male",
+          barangay: "Malinis",
+          experience: [
+            "8 years full stack development",
+            "team lead for 4 years",
+          ],
+          skills: ["React", "NodeJS", "MongoDB"],
+          certifications: ["AWS Certified Developer"],
+        },
+      ];
+
+      // duplicate more for scroll testing
+      for (let i = 0; i < 6; i++) {
+        resumes.push({ ...resumes[0] });
+      }
+
+      let currentPage = 1;
+      const perPage = 4;
+      let selectedCategory = "all";
+      let searchText = "";
+
+      const list = document.getElementById("resumeList");
+      const details = document.getElementById("detailsContent");
+
+      // render cards
+      function renderResumes() {
+        list.innerHTML = "";
+
+        const filtered = resumes.filter((r) => {
+          const matchCategory =
+            selectedCategory === "all" || r.category === selectedCategory;
+          const matchSearch =
+            r.name.toLowerCase().includes(searchText) ||
+            r.title.toLowerCase().includes(searchText);
+          return matchCategory && matchSearch;
+        });
+
+        const start = (currentPage - 1) * perPage;
+        const paginated = filtered.slice(start, start + perPage);
+
+        paginated.forEach((resume) => {
+          const card = document.createElement("div");
+          card.className = "resume-card";
+
+          card.innerHTML = `
+            <div class="d-flex">
+                <div class="resume-icon">
+                    <i class="bi bi-person"></i>
+                </div>
+                <div class="ms-3 w-100">
+                    <h5 class="mb-1">${resume.name}</h5>
+                    <p class="fw-medium mb-1">${resume.title}</p>
+                    <span class="badge badge-entry">${resume.level}</span>
+                    <span class="badge badge-fulltime">${resume.type}</span>
+                </div>
+            </div>
+        `;
+
+          // when clicking card update right panel
+          card.addEventListener("click", function () {
+            document
+              .querySelectorAll(".resume-card")
+              .forEach((c) => c.classList.remove("active-card"));
+            card.classList.add("active-card");
+
+            updateDetails(resume);
+
+            card.scrollIntoView({ behavior: "smooth", block: "center" });
+          });
+
+          list.appendChild(card);
+        });
+
+        // auto-select first card on the page and show details
+        if (paginated.length > 0) {
+          const firstCard = list.querySelector(".resume-card");
+          if (firstCard) {
+            document
+              .querySelectorAll(".resume-card")
+              .forEach((c) => c.classList.remove("active-card"));
+            firstCard.classList.add("active-card");
+            updateDetails(paginated[0]);
+          }
+        } else {
+          // clear details if no resumes
+          details.innerHTML = '<p class="text-muted">No resumes found.</p>';
+        }
+      }
+
+      // update right panel layout
+      function updateDetails(resume) {
+        // animate out
+        details.classList.add("fade-out");
+
+        setTimeout(() => {
+          details.innerHTML = `
+        <div class="d-flex justify-content-between align-items-start">
+            <div class="d-flex">
+                <div class="resume-icon-large me-3">
+                    <i class="bi bi-person"></i>
+                </div>
+                <div>
+                    <h2 class="mb-1">${resume.name}</h2>
+                    <h5 class="text-muted">${resume.title}</h5>
+                </div>
+            </div>
+
+            <button class="btn btn-save-big">
+                <i class="bi bi-heart"></i> Save
+            </button>
+        </div>
+
+        <div class="mt-4">
+            <h5 class="section-title">Basic Information:</h5>
+            <p>Age: ${resume.age}</p>
+            <p>Gender: ${resume.gender}</p>
+            <p>Barangay: ${resume.barangay}</p>
+        </div>
+
+        <div class="mt-4">
+            <h5 class="section-title">Experiences:</h5>
+            ${resume.experience.map((e) => `<p>${e}</p>`).join("")}
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h5 class="section-title">Skills:</h5>
+                <ul class="custom-list">
+                    ${resume.skills.map((s) => `<li>${s}</li>`).join("")}
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h5 class="section-title">Licenses and Certifications:</h5>
+                <ul class="custom-list">
+                    ${resume.certifications.map((c) => `<li>${c}</li>`).join("")}
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <button class="btn btn-green-lg">See Resume</button>
+        </div>
+        `;
+
+          details.classList.remove("fade-out");
+        }, 200);
+      }
+
+      // filters
+      document.querySelectorAll(".tag").forEach((tag) => {
+        tag.addEventListener("click", function () {
+          document
+            .querySelectorAll(".tag")
+            .forEach((t) => t.classList.remove("active"));
+          tag.classList.add("active");
+          selectedCategory = tag.dataset.category;
+          currentPage = 1;
+          renderResumes();
+        });
+      });
+
+      // search
+      const searchInput = document.querySelector(".search-input input");
+      if (searchInput) {
+        searchInput.addEventListener("input", function (e) {
+          searchText = e.target.value.toLowerCase();
+          currentPage = 1;
+          renderResumes();
+        });
+      }
+
+      // pagination
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+
+      if (prevBtn) {
+        prevBtn.addEventListener("click", function () {
+          if (currentPage > 1) {
+            currentPage--;
+            renderResumes();
+          }
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener("click", function () {
+          currentPage++;
+          renderResumes();
+        });
+      }
+
+      renderResumes();
+    </script>
+  </body>
+</html>
