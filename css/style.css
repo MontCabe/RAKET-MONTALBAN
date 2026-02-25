@@ -3,7 +3,7 @@ body {
   margin: 0;
   font-family: "Poppins", sans-serif;
   background: #f4f6f5;
-  padding-top: 70px;
+  padding-top: 0;
   min-height: 100vh;
   /* reserve space so fixed footer doesn't cover content */
   padding-bottom: 90px;
@@ -47,7 +47,7 @@ body {
 
 /* toggler styling to be visible on dark background */
 .navbar-toggler {
-  border-color: rgba(255,255,255,0.15);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 .navbar-toggler-icon {
   filter: invert(1) brightness(2);
@@ -68,7 +68,7 @@ body {
     background: #ffffff;
     border-radius: 10px;
     padding: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     z-index: 1180;
     display: none;
   }
@@ -345,6 +345,7 @@ body {
   right: 0;
   bottom: 0;
   z-index: 1000;
+  font-size: 12px;
 }
 
 /* responsive */
@@ -485,4 +486,302 @@ body {
 
 .form-group-validation {
   position: relative;
+}
+/* Banner Styles */
+.banner-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  margin-bottom: 0;
+  margin-top: 64px;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.banner-overlay h2 {
+  color: white;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-banner {
+  padding: 12px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-learn-more {
+  background-color: #0b5d0b;
+  color: white;
+  border: 2px solid #0b5d0b;
+}
+
+.btn-learn-more:hover {
+  background-color: transparent;
+  color: #0b5d0b;
+  border-color: #0b5d0b;
+}
+
+.btn-find-resume {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-find-resume:hover {
+  background-color: white;
+  color: #0b5d0b;
+  border-color: white;
+}
+
+/* About Montalban Section */
+.about-montalban {
+  background: linear-gradient(135deg, #f4f6f5 0%, #e8f0eb 100%);
+  padding: 60px 20px;
+  margin-bottom: 40px;
+}
+
+.about-montalban .container {
+  max-width: 800px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-montalban h2 {
+  color: #2f6b47;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.about-montalban p {
+  color: #666;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
+.about-montalban h4 {
+  color: #2f6b47;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.about-montalban ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-montalban ul li {
+  color: #333;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 10px;
+  padding-left: 30px;
+  position: relative;
+}
+
+.about-montalban ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #0b5d0b;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .banner-container {
+    height: 250px;
+  }
+
+  .banner-overlay h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .banner-buttons {
+    gap: 10px;
+  }
+
+  .btn-banner {
+    padding: 10px 25px;
+    font-size: 14px;
+  }
+
+  .about-montalban h2 {
+    font-size: 28px;
+  }
+
+  .about-montalban p {
+    font-size: 16px;
+  }
+}
+
+/* Floating Card Styles */
+.floating-card {
+  position: fixed;
+  right: 20px;
+  top: 150px;
+  width: 320px;
+  background: linear-gradient(135deg, #f4f6f5 0%, #e8f0eb 100%);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  border: 1px solid rgba(47, 107, 71, 0.1);
+}
+
+.floating-card h5 {
+  color: #2f6b47;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.floating-card .subtitle-text {
+  color: #666;
+  font-weight: 500;
+  font-size: 13px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.floating-card h6 {
+  color: #2f6b47;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.floating-card ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.floating-card ul li {
+  color: #333;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 6px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.floating-card ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #0b5d0b;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  color: #2f6b47;
+}
+
+/* Responsive Floating Card */
+@media (max-width: 1024px) {
+  .floating-card {
+    right: 10px;
+    width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .floating-card {
+    position: fixed;
+    right: 10px;
+    top: 130px;
+    width: 280px;
+    padding: 20px;
+  }
+
+  .floating-card h5 {
+    font-size: 16px;
+  }
+
+  .floating-card h6 {
+    font-size: 12px;
+  }
+
+  .floating-card ul li {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-card {
+    right: 5px;
+    left: 5px;
+    width: auto;
+    top: 120px;
+  }
 }
