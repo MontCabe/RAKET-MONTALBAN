@@ -69,11 +69,15 @@ if (signInForm) {
       email === VALID_CREDENTIALS.email &&
       password === VALID_CREDENTIALS.password
     ) {
-      // Store sign-in state
-      localStorage.setItem("isSignedIn", "true");
-      localStorage.setItem("userEmail", email);
+      // Store sign-in state: use sessionStorage for session-only sign-ins
       if (rememberMe) {
+        localStorage.setItem("isSignedIn", "true");
+        localStorage.setItem("userEmail", email);
         localStorage.setItem("rememberMe", "true");
+      } else {
+        sessionStorage.setItem("isSignedIn", "true");
+        sessionStorage.setItem("userEmail", email);
+        localStorage.removeItem("rememberMe");
       }
 
       // Show success message

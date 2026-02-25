@@ -191,11 +191,14 @@
     <script>
       // Handle floating card visibility based on scroll position
       const floatingCard = document.getElementById('floatingCard');
-      const isSignedIn = localStorage.getItem('isSignedIn') === 'true';
+      // Consider both sessionStorage and localStorage sign-in states
+      const isSignedIn =
+        sessionStorage.getItem('isSignedIn') === 'true' ||
+        localStorage.getItem('isSignedIn') === 'true';
 
       // Hide floating card if user is signed in
       if (isSignedIn) {
-        floatingCard.style.display = 'none';
+        if (floatingCard) floatingCard.style.display = 'none';
       } else {
         const footerHeight = document.querySelector('.footer').offsetHeight;
 

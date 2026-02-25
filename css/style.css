@@ -87,6 +87,15 @@ body {
     display: block;
   }
 
+  /* On mobile collapsed navbar show active link with only a bottom border */
+  .navbar-custom .navbar-collapse .nav-link.active-link {
+    background: transparent !important;
+    border-bottom: 2px solid #79ff7a !important;
+    padding-bottom: 8px;
+    margin-bottom: 6px;
+    color: #2f6b47 !important;
+  }
+
   /* full-width-ish on very small screens */
   @media (max-width: 575px) {
     .navbar-custom .navbar-collapse {

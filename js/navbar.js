@@ -1,7 +1,11 @@
 // Navbar sign-in state manager
 function updateNavbar() {
-  const isSignedIn = localStorage.getItem("isSignedIn") === "true";
-  const userEmail = localStorage.getItem("userEmail");
+  // Respect sessionStorage for session-only sign-ins and localStorage for "remember me"
+  const isSignedIn =
+    sessionStorage.getItem("isSignedIn") === "true" ||
+    localStorage.getItem("isSignedIn") === "true";
+  const userEmail =
+    sessionStorage.getItem("userEmail") || localStorage.getItem("userEmail");
   const navMenu = document.getElementById("navMenu");
 
   if (!navMenu) return;
@@ -42,6 +46,9 @@ function updateNavbar() {
         mobileLogout.addEventListener("click", function (e) {
           e.preventDefault();
           if (confirm("Are you sure you want to logout?")) {
+            // Clear both session and persistent sign-in data
+            sessionStorage.removeItem("isSignedIn");
+            sessionStorage.removeItem("userEmail");
             localStorage.removeItem("isSignedIn");
             localStorage.removeItem("userEmail");
             localStorage.removeItem("rememberMe");
@@ -95,6 +102,9 @@ function updateNavbar() {
         logoutBtn.addEventListener("click", function (e) {
           e.preventDefault();
           if (confirm("Are you sure you want to logout?")) {
+            // Clear both session and persistent sign-in data
+            sessionStorage.removeItem("isSignedIn");
+            sessionStorage.removeItem("userEmail");
             localStorage.removeItem("isSignedIn");
             localStorage.removeItem("userEmail");
             localStorage.removeItem("rememberMe");
@@ -117,3 +127,41 @@ document.addEventListener("DOMContentLoaded", updateNavbar);
 
 // Also check and update if user returns from another page
 window.addEventListener("focus", updateNavbar);
+
+// Ensure the correct nav link has the `active-link` class based on current URL
+function updateActiveNav() {
+  const navMenu = document.getElementById("navMenu");
+  if (!navMenu) return;
+
+  // Determine current page file name (default to index.html)
+  const path = window.location.pathname || "";
+  let current = path.split("/").pop();
+  if (!current || current === "") current = "index.html";
+
+  // Update all nav links inside the navbar
+  const navLinks = navMenu.querySelectorAll("a.nav-link");
+  navLinks.forEach((link) => {
+    const hrefRaw = link.getAttribute("href") || "";
+    const href = hrefRaw.trim();
+
+    // Ignore placeholder links and javascript anchors
+    if (href === "#" || href === "" || href.startsWith("javascript:")) {
+      link.classList.remove("active-link");
+      return;
+    }
+
+    // Strip query and hash fragments
+    const clean = href.split("#")[0].split("?")[0];
+    let target = clean.split("/").pop();
+    if (!target || target === "") target = "index.html";
+
+    if (target === current) {
+      link.classList.add("active-link");
+    } else {
+      link.classList.remove("active-link");
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", updateActiveNav);
+window.addEventListener("focus", updateActiveNav);
